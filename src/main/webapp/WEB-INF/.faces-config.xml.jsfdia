@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PROCESS model-entity="JSFProcess">
+ <PROCESS-ITEM NAME="rules:#select.xhtml" PATH="/select.xhtml"
+  SHAPE="32,17,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#select.xhtml:0" NAME="item"
+   PATH="/select.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="joanCreateRide::#createRide.xhtml"
+    NAME="output" PATH="/createRide.xhtml"
+    TARGET="rules:#createRide.xhtml" TITLE="joanCreateRide" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+  <PROCESS-ITEM ID="rules:#select.xhtml:1" NAME="item1"
+   PATH="/select.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="joanQueryRides::#queryRides.xhtml"
+    NAME="output" PATH="/queryRides.xhtml"
+    TARGET="rules:#queryRides.xhtml" TITLE="joanQueryRides" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#queryRides.xhtml" PATH="/queryRides.xhtml"
+  SHAPE="256,177,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#createRide.xhtml" PATH="/createRide.xhtml"
+  SHAPE="256,33,0,0" model-entity="JSFProcessGroup"/>
+</PROCESS>

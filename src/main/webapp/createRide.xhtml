@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Create ride</title>
+</h:head>
+<h:body>
+	<h1>Create a ride:</h1>
+	<h:form id="createRideForm">
+		<h:outputLabel for="departCity" value="Depart City: " />
+		<h:inputText id="departCity" value="#{CRB.departCity}" />
+		<br />
+		<h:message for="departCity" style="color:red" />
+
+		<h:outputLabel for="arrivalCity" value="Arrival City: " />
+		<h:inputText id="arrivalCity" value="#{CRB.arrivalCity}" />
+		<br />
+		<h:message for="arrivalCity" style="color:red" />
+
+		<h:outputLabel for="seats" value="Number of seats: " />
+		<h:inputText id="seats" value="#{CRB.seats}" />
+		<br />
+		<h:message for="seats" style="color:red" />
+
+		<h:outputLabel for="price" value="Price: " />
+		<h:inputText id="price" value="#{CRB.price}" />
+		<br />
+		<h:message for="price" style="color:red" />
+
+		<h:outputLabel for="data" value="Date: " />
+		<p:calendar id="data" value="#{CRB.data}" navigator="true"
+			mode="inline" />
+		<br />
+		<p:commandButton value="Create ride" action="#{CRB.createRide}"
+			update="createRideForm" />
+			
+		<h:messages globalOnly="false" showDetail="false" style="color:red; font-weight:bold; text-align:center;" />
+	</h:form>
+
+</h:body>
+</html>

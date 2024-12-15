@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+<f:view>
+    <h:head>
+        <title>JavaServer Faces aplikazioa</title>
+        <style>
+	     				
+        </style>
+    </h:head>
+    
+    <h:body>
+        <h:form>
+            <h3>Aukeratu aukera</h3>
+            <p>
+                <!-- Botón para crear rides -->
+                <h:commandButton value="Create Rides" action="joanCreateRide" />
+            </p>
+            <p>
+                <!-- Botón para consultar rides -->
+                <h:commandButton value="Query Rides" action="joanQueryRides" />
+            </p>
+
+            <!-- Sección para selección de idioma -->
+            <h3>Hizkuntza aukeratu / Seleccione el idioma / Choose a language</h3>
+	           <h:selectOneRadio >
+	                <f:selectItem itemValue="Euskara" itemLabel="Euskara" />
+	                <f:selectItem itemValue="Castellano" itemLabel="Castellano" />
+	                <f:selectItem itemValue="English" itemLabel="English" />
+	            </h:selectOneRadio>
+        </h:form>
+    </h:body>
+</f:view>
+</html>

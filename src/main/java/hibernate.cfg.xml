@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+ "classpath://org/hibernate/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+    <session-factory name="">
+        <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost/h</property>
+        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.connection.password"></property> 
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+        <property name="hibernate.show_sql">true</property>
+        <property name="hibernate.format_sql">true</property>
+        <property name="hibernate.connection.autocommit">false</property>
+        <property name="hibernate.connection.pool_size">1</property>
+        <property name="hibernate.hbm2ddl.auto">create</property>
+        <property name="hibernate.current_session_context_class">thread</property>
+        <mapping class="domain.Ride" />
+        <mapping class="domain.Driver" />
+    </session-factory>
+</hibernate-configuration>

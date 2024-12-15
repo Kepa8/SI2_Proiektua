@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Query Rides</title>
+</h:head>
+<h:body>
+	<h1>Query a ride:</h1>
+	<h:form>
+		<!-- Depart City -->
+		<h:outputLabel for="departCity" value="Depart City: " />
+		<h:selectOneMenu id="departCity" value="#{QRBE.departCity}">
+			<f:selectItems value="#{QRBE.departCities}" var="city"
+				itemValue="#{city}" itemLabel="#{city}" />
+			<p:ajax event="change" listener="#{QRBE.loadDestinationCities}"
+				update="arrivalCity" />
+		</h:selectOneMenu>
+
+		<br />
+		<h:message for="departCity" style="color:red" />
+
+		<!-- Arrival City -->
+		<h:outputLabel for="arrivalCity" value="Arrival City: " />
+		<h:selectOneMenu id="arrivalCity" value="#{QRBE.arrivalCity}">
+			<f:selectItems value="#{QRBE.destinationCities}" var="city"
+				itemValue="#{city}" itemLabel="#{city}" />
+		</h:selectOneMenu>
+		<br />
+		<h:message for="arrivalCity" style="color:red" />
+
+		<!-- Calendar -->
+		<br />
+		<h:outputLabel for="data" value="Date: " />
+		<p:calendar id="data" value="#{QRBE.data}" navigator="false"
+			mode="inline" />
+		<br />
+
+		<!-- Query Button @form -->
+		<p:commandButton value="Query Rides" action="#{QRBE.getRides}"
+			update="rideResults" />
+
+		<tr>
+			<td><p:dataTable id="rideResults" value="#{QRBE.results}"
+					var="ride" border="1">
+					<f:facet name="header">Rides:</f:facet>
+
+					<p:column>
+						<f:facet name="header">Driver</f:facet>
+        			#{ride.driver.email}
+   				</p:column>
+
+					<p:column>
+						<f:facet name="header">Seats</f:facet>
+      			  	#{ride.nPlaces}
+   				</p:column>
+
+					<p:column>
+						<f:facet name="header">Price</f:facet>
+       			    #{ride.price}
+    			</p:column>
+
+				</p:dataTable></td>
+		</tr>
+
+
+	</h:form>
+</h:body>
+</html>
+
+
+
+
