@@ -81,33 +81,47 @@ public class CRBean implements Serializable {
 		this.driver = driver;
 	}
 	
-	 public Ride createRide() {
-		 String email= "driver1@gmail.com";
-	        try {
-	            // HibernateDataAccess-en metodoa erabiltzen da Ride-a sortzeko
-	            Ride ride = hibernateDataAccess.createRide(departCity, arrivalCity, data, seats, price, email);
-
-	            // Mezu arrakastatsua gehitu
+	public Ride createRide() {
+	    // Verificar si la fecha es nula
+	    if (data == null || 
+	            departCity == null || departCity.trim().isEmpty() ||
+	            arrivalCity == null || arrivalCity.trim().isEmpty() ||
+	            seats == null || seats <= 0 ||
+	            price <= 0) {
+	            
+	            // Mostrar mensaje de error si faltan datos
 	            FacesContext.getCurrentInstance().addMessage(null,
-	                    new FacesMessage(FacesMessage.SEVERITY_INFO, "Ride-a ondo sortu da", null));
-
-	            return ride;
-
-	        } catch (RideMustBeLaterThanTodayException e) {
-	            // Data okerra bada, errorea bistaratzen da
-	            FacesContext.getCurrentInstance().addMessage(null,
-	                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Errorea: " + e.getMessage(), null));
-	        } catch (RideAlreadyExistException e) {
-	            // Ride-a existitzen bada, errorea bistaratzen da
-	            FacesContext.getCurrentInstance().addMessage(null,
-	                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Errorea: " + e.getMessage(), null));
-	        } catch (Exception e) {
-	            // Beste errore bat gertatzen bada
-	            e.printStackTrace();
-	            FacesContext.getCurrentInstance().addMessage(null,
-	                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Errorea Ride-a sortzerakoan: " + e.getMessage(),
-	                            null));
+	                new FacesMessage(FacesMessage.SEVERITY_ERROR, 
+	                    "Ez dituzu datu guztiak bete", 
+	                    null));
+	            return null;
 	        }
-	        return null;
+
+	    String email = "driver1@gmail.com";
+	    try {
+	        // El resto del código permanece igual
+	        Ride ride = hibernateDataAccess.createRide(departCity, arrivalCity, data, seats, price, email);
+
+	        // Mezu arrakastatsua gehitu
+	        FacesContext.getCurrentInstance().addMessage(null,
+	                new FacesMessage(FacesMessage.SEVERITY_INFO, "Ride-a ondo sortu da", null));
+
+	        return ride;
+
+	    } catch (RideMustBeLaterThanTodayException e) {
+	        // Data okerra bada, errorea bistaratzen da
+	        FacesContext.getCurrentInstance().addMessage(null,
+	                new FacesMessage(FacesMessage.SEVERITY_ERROR, "Data ezin da gaur edo lehenagokoa izan", null));
+	    } catch (RideAlreadyExistException e) {
+	        // Ride-a existitzen bada, errorea bistaratzen da
+	        FacesContext.getCurrentInstance().addMessage(null,
+	                new FacesMessage(FacesMessage.SEVERITY_ERROR, "Ride-a dagoeneko existitzen da", null));
+	    } catch (Exception e) {
+	        // Beste errore bat gertatzen bada
+	        e.printStackTrace();
+	        FacesContext.getCurrentInstance().addMessage(null,
+	                new FacesMessage(FacesMessage.SEVERITY_ERROR, "Ride-a sortzerakoan errore bat egon da", null));
 	    }
+	    return null;
+	}
 }
